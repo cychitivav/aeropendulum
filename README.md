@@ -9,11 +9,12 @@ This repository contains the development of an aeropendulum and the performance 
 $$
 \begin{gather*}
     I\ddot{\theta}=W_cl_c\cos{\theta}+F_hl_m-W_bl_b\cos{\theta}-W_nl_n\cos{\theta}-B\dot{\theta}\\
-    \ddot{\theta}=\frac{1}{I}(W\cos{\theta}-B\dot{\theta})+F_hl_m
+    \ddot{\theta}=\frac{1}{I}(W\cos{\theta}-B\dot{\theta}+F_hl_m)
 \end{gather*}
 $$
 
 Where
+
 $$
 W=W_cl_c-W_bl_b-W_nl_n
 $$
@@ -52,7 +53,73 @@ Therefore:
 
 $$
 \dot{x}_1 = x_2\\
-\dot{x}_2 = \frac{1}{I}(W\cos{\theta}-B\dot{\theta})
+\dot{x}_2 = \frac{1}{I}(W\cos{x_1}-Bx_2+F_hl_m)
+$$
+
+### Linearization
+To design linear controllers, we need to linearize the system around the an equilibrium point.
+
+$$
+f_1(x_1,x_2,u) = \dot{x}_1\\
+f_2(x_1,x_2,u) = \dot{x}_2
+$$
+
+$$
+X^*=
+\begin{bmatrix}
+    x_1^*\\
+    x_2^*
+\end{bmatrix}\\
+U^*=F^*\\
+Z = \Delta X = X-X^*
+$$
+
+$$
+\dot{Z}=\left.
+\begin{bmatrix}
+    \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2}\\
+    \frac{\partial f_2}{\partial x_1} & \frac{\partial f_1}{\partial x_2} 
+\end{bmatrix}\right|_{X^*,F^*}
+Z+\left.
+\begin{bmatrix}
+    \frac{\partial f_1}{\partial u}\\
+    \frac{\partial f_2}{\partial u} 
+\end{bmatrix}\right|_{X^*,F^*}
+u
+$$
+
+
+##### Equilibrium points
+For $x_2^*$:
+$$
+f_1(x_1^*,x_2^*,F^*)=\dot{x}_1=0\\
+x_2^*=0
+$$
+
+To $x_1$:
+$$
+f_2(x_1^*,x_2^*,F^*)=\dot{x}_2=0\\
+\frac{1}{I}(W\cos{x_1^*}-Bx_2^*+F^*l_m)=0\\
+W\cos{x_1^*}-Bx_2^*+F^*l_m=0\\
+F^*=\frac{Bx_2^*-W\cos{x_1^*}}{l_m}\\
+\mathbf{F^*=-\frac{W\cos{x_1^*}}{l_m}}
+$$ 
+
+If you want $x_1^*=0$, the thrust force is $F^*=-\frac{W}{l_m}$.
+
+Finally:
+$$
+\dot{Z}=\left.
+\begin{bmatrix}
+    0 & 1\\
+    -\frac{W}{I}\sin{x_1} & -\frac{B}{I}
+\end{bmatrix}\right|_{X^*,F^*}
+Z+\left.
+\begin{bmatrix}
+    0\\
+    \frac{l_m}{I} 
+\end{bmatrix}\right|_{X^*,F^*}
+u
 $$
 
 
@@ -74,7 +141,6 @@ To find the $B$ and $F_h$ parameters, we use the following methods:
     The objective of this identification is to find the thrust force $F_h$ that depends of voltage. Therefore, we take measurements of the voltage locating the system in an angle $0$ with different counterweights. With this, we can calculate the thrust force $F_h$ that corresponds to the voltage $V$ in the system making a torque summation.
 
 
-### Linearization
-To design linear controllers, we need to linearize the system around the desired angular position. 
 
-## MRAC(Model Reference Apaptive Control)
+
+## MRAC(Model Reference Adaptive Control)
