@@ -14,22 +14,28 @@ $$
 $$
 
 Where
+
 $$
 W=W_cl_c-W_bl_b-W_nl_n
 $$
 
 To simplify the inertia, we define the term $I_0$ as the system inertia without counterweight and the term $I$ as the system inertia with counterweight.
+
 $$
 I=I_0+m_cl_c^2
 $$
 
 Where $I_0 = I_b+I_n$, to compute the bar inertia ($I_b$), we use the parallel axes theorem:
+
 $$
-I_b = I_{b_{cm}} + m_bl_b^2\\
-I_b = \frac{1}{12}m_b(l_1+l_m)^2 + m_bl_b^2
+\begin{gather*}
+    I_b = I_{b_{cm}} + m_bl_b^2\\
+    I_b = \frac{1}{12}m_b(l_1+l_m)^2 + m_bl_b^2
+\end{gather*}
 $$
 
 And the motor+nuts inertia ($I_n$) is considered as a puntual load, i.e.
+
 $$
 I_n = m_nl_n^2
 $$
@@ -37,109 +43,128 @@ $$
 ## State-space model
 To represent the state-space model of the system, we define the next state equations:
 
-$$
-x_1 = \theta\\
-x_2 = \dot{\theta}
-$$
+$$\begin{gather*}
+    x_1 = \theta\\
+    x_2 = \dot{\theta}
+\end{gather*}$$
 
 Therefore:
 
 $$
-\dot{x}_1 = x_2\\
-\dot{x}_2 = \frac{1}{I}(W\cos{x_1}-\beta x_2+F_hl_m)
+\begin{gather*}
+    \dot{x}_1 = x_2\\
+    \dot{x}_2 = \frac{1}{I}(W\cos{x_1}-\beta x_2+F_hl_m)
+\end{gather*}
 $$
 
 ### Linearization
 To design linear controllers, we need to linearize the system around the an equilibrium point.
 
 $$
-f_1(x_1,x_2,u) = \dot{x}_1\\
-f_2(x_1,x_2,u) = \dot{x}_2
+\begin{gather*}
+    f_1(x_1,x_2,u) = \dot{x}_1\\
+    f_2(x_1,x_2,u) = \dot{x}_2
+\end{gather*}
 $$
 
 $$
-X^*=
-\begin{bmatrix}
-    x_1^*\\
-    x_2^*
-\end{bmatrix}\\
-U^*=F^*\\
-Z = \Delta X = X-X^*
+\begin{gather*}
+    X^\ast=
+    \begin{bmatrix}
+        x_1^\ast\\
+        x_2^\ast
+    \end{bmatrix}\\
+    U^\ast=F^\ast\\
+    Z = \Delta X = X-X^\ast
+\end{gather*}
 $$
 
 $$
-\dot{Z}=\left.
-\begin{bmatrix}
-\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2}\\
-    \frac{\partial f_2}{\partial x_1} & \frac{\partial f_1}{\partial x_2} 
-\end{bmatrix}\right|_{X^*,F^*}
-Z+\left.
-\begin{bmatrix}
-    \frac{\partial f_1}{\partial u}\\
-    \frac{\partial f_2}{\partial u} 
-\end{bmatrix}\right|_{X^*,F^*}
-u
+\begin{gather*}
+    \dot{Z}=\left.
+    \begin{bmatrix}
+    \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2}\\
+        \frac{\partial f_2}{\partial x_1} & \frac{\partial f_1}{\partial x_2} 
+    \end{bmatrix}\right|\_{X^\ast , F^\ast}
+    Z+\left.
+    \begin{bmatrix}
+        \frac{\partial f_1}{\partial u}\\
+        \frac{\partial f_2}{\partial u} 
+    \end{bmatrix}\right|_{X^\ast,F^\ast}
+    u
+\end{gather*}
 $$
 
 
 ##### Equilibrium points
-For $x_2^*$:
+For $x_2^\ast$:
+
 $$
-f_1(x_1^*,x_2^*,F^*)=\dot{x}_1=0\\
-x_2^*=0
+\begin{gather*}
+    f_1(x_1^\ast,x_2^\ast,F^\ast)=\dot{x}_1=0\\
+    x_2^\ast=0
+\end{gather*}
 $$
 
 To $x_1$:
+
 $$
-f_2(x_1^*,x_2^*,F^*)=\dot{x}_2=0\\
-\frac{1}{I}(W\cos{x_1^*}-\beta x_2^*+F^*l_m)=0\\
-W\cos{x_1^*}-\beta x_2^*+F^*l_m=0\\
-F^*=\frac{\beta x_2^*-W\cos{x_1^*}}{l_m}\\
-\mathbf{F^*=-\frac{W\cos{x_1^*}}{l_m}}
+\begin{gather*}
+    f_2(x_1\ast,x_2^\ast,F^\ast)=\dot{x}_2=0\\
+    \frac{1}{I}(W\cos{x_1^\ast}-\beta x_2^\ast+F^\ast l_m)=0\\
+    W\cos{x_1^\ast}-\beta x_2^\ast+F^\ast l_m=0\\
+    F^\ast=\frac{\beta x_2^\ast-W\cos{x_1^\ast}}{l_m}\\
+    \mathbf{F^\ast=-\frac{W\cos{x_1^\ast}}{l_m}}
+\end{gather*}
 $$ 
 
 
 
 Finally:
-$$
-\dot{Z}=\left.
-\begin{bmatrix}
-    0 & 1\\
-    -\frac{W}{I}\sin{x_1} & -\frac{\beta}{I}
-\end{bmatrix}\right|_{X^*,F^*}
-Z+\left.
-\begin{bmatrix}
-    0\\
-    \frac{l_m}{I} 
-\end{bmatrix}\right|_{X^*,F^*}
-u\\
-\dot{Z}=
-\begin{bmatrix}
-    0 & 1\\
-    -\frac{W}{I}\sin{x_1^*} & -\frac{\beta}{I}
-\end{bmatrix}
-Z+
-\begin{bmatrix}
-    0\\
-    \frac{l_m}{I} 
-\end{bmatrix}
-u
-$$
-
-If you want $x_1^*=0$, the thrust force is $F^*=-\frac{W}{l_m}$ and:
 
 $$
-\dot{Z}=
-\begin{bmatrix}
-    0 & 1\\
-    0 & -\frac{\beta}{I}
-\end{bmatrix}
-Z+
-\begin{bmatrix}
-    0\\
-    \frac{l_m}{I} 
-\end{bmatrix}
-u
+\begin{gather*}
+    \dot{Z}=\left.
+    \begin{bmatrix}
+        0 & 1\\
+        -\frac{W}{I}\sin{x_1} & -\frac{\beta}{I}
+    \end{bmatrix}\right|\_{X^\ast,F^\ast}
+    Z+\left.
+    \begin{bmatrix}
+        0\\
+        \frac{l_m}{I} 
+    \end{bmatrix}\right|_{X^\ast,F^\ast}
+    u\\
+    \dot{Z}=
+    \begin{bmatrix}
+        0 & 1\\
+        -\frac{W}{I}\sin{x_1^\ast} & -\frac{\beta}{I}
+    \end{bmatrix}
+    Z+
+    \begin{bmatrix}
+        0\\
+        \frac{l_m}{I} 
+    \end{bmatrix}
+    u
+\end{gather*}
+$$
+
+If you want $x_1^\ast=0$, the thrust force is $F^\ast=-\frac{W}{l_m}$ and:
+
+$$
+\begin{gather*}
+    \dot{Z}=
+    \begin{bmatrix}
+        0 & 1\\
+        0 & -\frac{\beta}{I}
+    \end{bmatrix}
+    Z+
+    \begin{bmatrix}
+        0\\
+        \frac{l_m}{I} 
+    \end{bmatrix}
+    u
+\end{gather*}
 $$
 
 
@@ -161,12 +186,15 @@ To find the $B$ and $F_h$ parameters, we use the following methods:
     The objective of this identification is to find the thrust force $F_h$ that depends of voltage. Therefore, we take measurements of the voltage locating the system in an angle $0$ with different counterweights. With this, we can calculate the thrust force $F_h$ that corresponds to the voltage $V$ in the system making a torque summation.
 
     If we have:
+
     $$
-    B=
-    \begin{bmatrix}
-    0\\
-    K_f\frac{l_m}{I}
-    \end{bmatrix}
+    \begin{gather*}
+        B=
+        \begin{bmatrix}
+        0\\
+        K_f\frac{l_m}{I}
+        \end{bmatrix}
+    \end{gather*}
     $$
 
 
