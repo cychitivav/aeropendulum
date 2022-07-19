@@ -380,13 +380,13 @@ To find the $K$, we choice the following Lyapunov candidate:
 
 $$
 \begin{gather*}
-    V = e^TPe + \text{trace}(\tilde{K}_x\Gamma_x^{-1}\tilde{K}^T_x) + \text{trace}(\tilde{K}_r\Gamma_r^{-1}\tilde{K}^T_r) + \text{trace}(\tilde{K}_y\Gamma_y^{-1}\tilde{K}^T_y) \\
-    \dot{V} = e^TP\dot{e} + \dot{e}^TPe + 2\text{trace}(\tilde{K}_x\Gamma_x^{-1}\dot{\tilde{K}}^T_x)+2\text{trace}(\tilde{K}_r\Gamma_r^{-1}\dot{\tilde{K}}^T_r)+2\text{trace}(\tilde{K}_y\Gamma_y^{-1}\dot{\tilde{K}}^T_y) \\
-    \dot{V} = e^TP(A_me-BK)+(A_me-BK)^TPe+ 2\text{trace}(\tilde{K}_x\Gamma_x^{-1}\dot{\tilde{K}}^T_x)+2\text{trace}(\tilde{K}_r\Gamma_r^{-1}\dot{\tilde{K}}^T_r)+2\text{trace}(\tilde{K}_y\Gamma_y^{-1}\dot{\tilde{K}}^T_y)\\
-    \dot{V} = e^TP(A_me-BK)+(e^TA_m^T-K^TB^T)Pe+ 2\text{trace}(\tilde{K}_x\Gamma_x^{-1}\dot{\tilde{K}}^T_x)+2\text{trace}(\tilde{K}_r\Gamma_r^{-1}\dot{\tilde{K}}^T_r)+2\text{trace}(\tilde{K}_y\Gamma_y^{-1}\dot{\tilde{K}}^T_y)\\
-    \dot{V} = e^TPA_me-e^TPBK+e^TA_m^TPe-K^TB^TPe+ 2\text{trace}(\tilde{K}_x\Gamma_x^{-1}\dot{\tilde{K}}^T_x)+2\text{trace}(\tilde{K}_r\Gamma_r^{-1}\dot{\tilde{K}}^T_r)+2\text{trace}(\tilde{K}_y\Gamma_y^{-1}\dot{\tilde{K}}^T_y)\\
-    \dot{V} = e^T[PA_me+e^TA_m^TP]e-e^TPBK-K^TB^TPe+ 2\text{trace}(\tilde{K}_x\Gamma_x^{-1}\dot{\tilde{K}}^T_x)+2\text{trace}(\tilde{K}_r\Gamma_r^{-1}\dot{\tilde{K}}^T_r)+2\text{trace}(\tilde{K}_y\Gamma_y^{-1}\dot{\tilde{K}}^T_y)\\
-    \dot{V} = e^T[PA_me+e^TA_m^TP]e-2e^TPB\left(\tilde{K}_rr+\tilde{K}_x\hat{x}+\tilde{K}_yCe_l\right)+ 2\text{trace}(\tilde{K}_x\Gamma_x^{-1}\dot{\tilde{K}}^T_x)+2\text{trace}(\tilde{K}_r\Gamma_r^{-1}\dot{\tilde{K}}^T_r)+2\text{trace}(\tilde{K}_y\Gamma_y^{-1}\dot{\tilde{K}}^T_y)
+    V = e^TPe + \text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\tilde{K}^T\_x) + \text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\tilde{K}^T\_r) + \text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\tilde{K}^T\_y) \\
+    \dot{V} = e^TP\dot{e} + \dot{e}^TPe + 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y) \\
+    \dot{V} = e^TP(A\_me-BK)+(A\_me-BK)^TPe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)\\
+    \dot{V} = e^TP(A\_me-BK)+(e^TA\_m^T-K^TB^T)Pe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)\\
+    \dot{V} = e^TPA\_me-e^TPBK+e^TA\_m^TPe-K^TB^TPe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)\\
+    \dot{V} = e^T[PA\_me+e^TA\_m^TP]e-e^TPBK-K^TB^TPe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)\\
+    \dot{V} = e^T[PA\_me+e^TA\_m^TP]e-2e^TPB\left(\tilde{K}\_rr+\tilde{K}\_x\hat{x}+\tilde{K}\_yCe\_l\right)+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)
 \end{gather*}
 $$
 
