@@ -382,12 +382,15 @@ $$
 \begin{gather*}
     V = e^TPe + \text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\tilde{K}^T\_x) + \text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\tilde{K}^T\_r) + \text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\tilde{K}^T\_y) \\
     \dot{V} = e^TP\dot{e} + \dot{e}^TPe + 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y) \\
-    \dot{V} = e^TP(A\_me-BK)+(A\_me-BK)^TPe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)\\
-    \dot{V} = e^TP(A\_me-BK)+(e^TA\_m^T-K^TB^T)Pe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)\\
-    \dot{V} = e^TPA\_me-e^TPBK+e^TA\_m^TPe-K^TB^TPe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)\\
-    \dot{V} = e^T[PA\_me+e^TA\_m^TP]e-e^TPBK-K^TB^TPe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)\\
-    \dot{V} = e^T[PA\_me+e^TA\_m^TP]e-2e^TPB\left(\tilde{K}\_rr+\tilde{K}\_x\hat{x}+\tilde{K}\_yCe\_l\right)+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)
+    \dot{V} = e^TP(A\_me-BK)+(A\_me-BK)^TPe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y) \\
+    \dot{V} = e^TP(A\_me-BK)+(e^TA\_m^T-K^TB^T)Pe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y) \\
+    \dot{V} = e^TPA\_me-e^TPBK+e^TA\_m^TPe-K^TB^TPe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y) \\
+    \dot{V} = e^T[PA\_me+e^TA\_m^TP]e-e^TPBK-K^TB^TPe+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y) 
 \end{gather*}
+$$
+
+$$
+\dot{V} = e^T[PA\_me+e^TA\_m^TP]e-2e^TPB\left(\tilde{K}\_rr+\tilde{K}\_x\hat{x}+\tilde{K}\_yCe\_l\right)+ 2\text{trace}(\tilde{K}\_x\Gamma\_x^{-1}\dot{\tilde{K}}^T\_x)+2\text{trace}(\tilde{K}\_r\Gamma\_r^{-1}\dot{\tilde{K}}^T\_r)+2\text{trace}(\tilde{K}\_y\Gamma\_y^{-1}\dot{\tilde{K}}^T\_y)
 $$
 
 * $e^TPB\tilde{K}_rr = \text{trace}(\tilde{K}_rre^TPB)$
@@ -414,6 +417,8 @@ $$
 * $\dot{K}^T_x = \Gamma_x\hat{x}e^TPB$
 * $\dot{K}^T_r = \Gamma_rre^TPB$
 * $\dot{K}^T_y = \Gamma_yCe_le^TPB$
+
+
 
 
 
